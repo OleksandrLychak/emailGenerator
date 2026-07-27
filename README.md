@@ -13,6 +13,7 @@ rules and reports every rule violation it finds, rather than stopping
 at the first one.
 
 **Rules covered:**
+
 - length between 6 and 20 characters
 - allowed characters: Latin letters, digits, specific special characters
 - no spaces
@@ -21,20 +22,22 @@ at the first one.
 
 Tests: `test/passwordvalidator/` (JUnit 5).
 
-### Email Generator (`src/EmailGenerator.java`)
+### Email Generator (`src/emailgenerator/`)
 
 Utility for generating email addresses. _Work in progress._
 
 ## Project Structure
 
+```
 LearningProject/
 ├── src/
-│ ├── EmailGenerator.java — email generation task (WIP)
-│ └── passwordvalidator/ — password validation task
+│   ├── emailgenerator/      — email generation task (WIP)
+│   └── passwordvalidator/   — password validation task
 ├── test/
-│ └── passwordvalidator/ — JUnit 5 tests for password validator
+│   └── passwordvalidator/   — JUnit 5 tests for password validator
 ├── .gitignore
 └── README.md
+```
 
 ## Requirements
 
