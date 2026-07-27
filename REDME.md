@@ -1,4 +1,4 @@
-# Password Validator
+# Password Validation Utility
 
 A simple console-based Java application that validates a password against a fixed
 set of rules and reports every rule violation it finds, rather than stopping at the
