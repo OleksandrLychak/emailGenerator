@@ -1,111 +1,61 @@
-# Password Validation Utility
+# Learning Project — QA Automation
 
-A simple console-based Java application that validates a password against a fixed
-set of rules and reports every rule violation it finds, rather than stopping at the
-first one.
+Навчальний репозиторій із практичними завданнями під час навчання
+на QA Automation Engineer. Містить кілька невеликих Java-програм,
+кожна — окреме навчальне завдання.
 
-## Description
+## Contents
 
-The user is prompted to enter a password in the console. The application checks the
-input against the validation rules below and prints either a confirmation that the
-password is valid, or a list of every specific problem found with it.
+### Password Validator (`src/passwordvalidator/`)
 
-## Validation Rules
+Console application that validates a password against a fixed set of
+rules and reports every rule violation it finds, rather than stopping
+at the first one.
 
-1. Length must be between **6 and 20** characters (inclusive).
-2. Only Latin letters are allowed: `a-z`, `A-Z`.
-3. Digits are allowed: `0-9`.
-4. Only the following special characters are allowed:
-   ```
-   . , ! # $ % & ' * + - / = ? ^ _ ` { | [ \ ] ~ " ( ) : ; < > @
-   ```
-5. Spaces are **not** allowed.
-6. The password **must** contain at least one character from each of the following
-   categories:
-    - an uppercase letter
-    - a lowercase letter
-    - a digit
-    - a special character (from the list above)
+**Rules covered:**
 
-If the password is empty, the application reports this as a single, separate error
-("This field is required") and does not run any of the other checks.
+- length between 6 and 20 characters
+- allowed characters: Latin letters, digits, specific special characters
+- no spaces
+- must contain at least one uppercase letter, lowercase letter,
+  digit and special character
+
+Tests: `test/passwordvalidator/` (JUnit 5).
+
+### Email Generator (`src/emailgenerator/`)
+
+Utility for generating email addresses. _Work in progress._
 
 ## Project Structure
 
-All classes belong to the `passwordvalidator` package.
-
-| File                     | Responsibility                                                                 |
-|--------------------------|---------------------------------------------------------------------------------|
-| `Main.java`              | Entry point. Reads the password from console input and prints the result.       |
-| `PasswordValidator.java` | Contains all validation logic; returns a list of found errors.                  |
-| `ErrorType.java`         | Enum listing every possible validation error, with its message template.        |
-| `ValidationError.java`   | Wraps an `ErrorType` together with the final, formatted message text.           |
-| `AllowedCharacters.java` | Stores the constant string of allowed special characters.                       |
-
-Unit tests live in the parallel `test/passwordvalidator` source root, in
-`PasswordValidatorTest.java`.
-
-## How to Compile and Run
-
-### From the command line
-
-```bash
-javac -d out src/passwordvalidator/*.java
-java -cp out passwordvalidator.Main
+```
+LearningProject/
+├── src/
+│   ├── emailgenerator/      — email generation task (WIP)
+│   └── passwordvalidator/   — password validation task
+├── test/
+│   └── passwordvalidator/   — JUnit 5 tests for password validator
+├── .gitignore
+└── README.md
 ```
 
-### From IntelliJ IDEA
+## Requirements
 
-Open the project, right-click `Main.java` inside `src/passwordvalidator`, and choose
-**Run 'Main.main()'**.
+- Java 17 or higher
+- IntelliJ IDEA (recommended)
+- JUnit 5 (for running tests)
 
-## Example Usage
+## How to Run
 
-**Valid password:**
-```
-Enter your password
-Ab1!Cd2@
-Password is valid
-```
+Open the project in IntelliJ IDEA, navigate to the task you want to
+run inside `src/`, right-click the corresponding `.java` file and
+choose **Run**.
 
-**Invalid password (multiple problems at once):**
-```
-Enter your password
-ab kd 74@@
-Password is invalid
-- Password must not contain spaces
-- Password contains disallowed characters: @
-- Password must contain at least one uppercase letter
-```
+## How to Run Tests
 
-**Empty password (short-circuit case):**
-```
-Enter your password
+Right-click the test class in `test/` and choose **Run**.
 
-Password is invalid
-- This field is required
-```
+## Roadmap
 
-## Testing
-
-The project includes a JUnit 5 test class (`PasswordValidatorTest`) covering:
-
-- empty password (verifies the short-circuit behavior)
-- password shorter than 6 characters
-- password longer than 20 characters
-- password containing a space
-- password containing a disallowed character
-- password missing an uppercase letter
-- password missing a lowercase letter
-- password missing a digit
-- password missing a special character
-- a fully valid password (expects zero errors)
-
-Run all tests via **Run 'PasswordValidatorTest'** in IntelliJ IDEA.
-
-## Possible Future Improvements
-
-- Allow the user multiple attempts in a loop instead of exiting after one check.
-- Make the validation rules (length range, allowed characters, mandatory
-  categories) configurable instead of hard-coded.
-- Add a graphical or web interface instead of console-only interaction.
+More QA automation exercises will be added to this repository as new
+tasks come up during the course.
