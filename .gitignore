@@ -36,3 +36,4 @@ bin/
 target/
 ### Local libraries ###
 lib/
+test-output/
