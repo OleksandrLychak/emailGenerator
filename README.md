@@ -20,7 +20,10 @@ at the first one.
 - must contain at least one uppercase letter, lowercase letter,
   digit and special character
 
-Tests: `test/passwordvalidator/` (JUnit 5).
+**Tests:**
+
+- JUnit 5: `test/passwordvalidator/PasswordValidatorTest.java`
+- TestNG: `test/passwordvalidator/testng/` (see below for how to run)
 
 ### Email Generator (`src/emailgenerator/`)
 
@@ -34,7 +37,12 @@ LearningProject/
 │   ├── emailgenerator/      — email generation task (WIP)
 │   └── passwordvalidator/   — password validation task
 ├── test/
-│   └── passwordvalidator/   — JUnit 5 tests for password validator
+│   └── passwordvalidator/
+│       ├── PasswordValidatorTest.java   — JUnit 5 tests
+│       └── testng/                      — TestNG test suite
+│           ├── PasswordValidatorTestNGTest.java
+│           ├── PasswordTestHelper.java
+│           └── testng.xml
 ├── .gitignore
 └── README.md
 ```
@@ -43,7 +51,8 @@ LearningProject/
 
 - Java 17 or higher
 - IntelliJ IDEA (recommended)
-- JUnit 5 (for running tests)
+- JUnit 5 (for JUnit tests)
+- TestNG 7.10.2 (for TestNG tests, JARs in `lib/`)
 
 ## How to Run
 
@@ -53,7 +62,30 @@ choose **Run**.
 
 ## How to Run Tests
 
-Right-click the test class in `test/` and choose **Run**.
+### JUnit 5
+
+Right-click `PasswordValidatorTest` in `test/passwordvalidator/` and
+choose **Run**.
+
+### TestNG
+
+**From IntelliJ IDEA:** right-click `testng.xml` and choose
+**Run 'testng.xml'**, or right-click `PasswordValidatorTestNGTest`
+and choose **Run**.
+
+**From the command line:**
+
+```bash
+# Compile everything
+javac -cp "src:lib/*" -d out src/passwordvalidator/*.java test/passwordvalidator/testng/*.java
+
+# Run the whole TestNG suite
+java -cp "out:lib/*" org.testng.TestNG test/passwordvalidator/testng/testng.xml
+```
+
+The suite is organised into three runs — All tests, Smoke tests only,
+and Negative scenarios — and uses five groups: `smoke`, `regression`,
+`positive`, `negative`, `boundary`.
 
 ## Roadmap
 
